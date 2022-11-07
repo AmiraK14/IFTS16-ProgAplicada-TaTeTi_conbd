@@ -132,8 +132,9 @@ public class Inicializador{
         		System.out.println(rs.getString("mensaje"));
         		
         		String queryInsert = "INSERT INTO partidas (puntosComputadora, puntosJugador, nombreJugador) VALUES (?,?,?)";
-
         	    PreparedStatement pst = con.prepareStatement(queryInsert);
+        	    rs.absolute(22);
+        		System.out.println(rs.getString("mensaje"));
         		
         		pst.setInt(1,jugador2.getPuntos());
         		pst.setInt(2, jugador1.getPuntos());
