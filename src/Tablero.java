@@ -26,7 +26,7 @@ public boolean sePudoColocarFicha;
 		System.out.println();
 	}
 	
-	public boolean colocarFicha(Ubicacion ubicacion, String ficha, int idiomaElegido) {
+	public boolean colocarFicha(Ubicacion ubicacion, String ficha, int idiomaElegido, int jugador) {
 		try
 		{
 		    Class.forName("com.mysql.cj.jdbc.Driver");
@@ -37,8 +37,10 @@ public boolean sePudoColocarFicha;
 				Tablero[ubicacion.getUbicacionFila()][ubicacion.getUbicacionColumna()]=ficha;
 				sePudoColocarFicha=true;
 			} else {
-				rs.absolute(17);
-				System.out.println(rs.getString("mensaje"));
+				if (jugador == 1) {
+					rs.absolute(17);
+					System.out.println(rs.getString("mensaje"));
+				}
 				sePudoColocarFicha=false;
 			}
 		}

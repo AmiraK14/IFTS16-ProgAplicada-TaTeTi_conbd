@@ -6,6 +6,8 @@ import java.sql.Statement;
 public class Jugador2 extends Jugador{
 	public String nombre;
 	public String tipoFicha;
+	public int fila;
+	public int columna;
 	
 	public Jugador2(String nombre) {
 		super(nombre);
@@ -27,14 +29,14 @@ public class Jugador2 extends Jugador{
 		    Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/mijuego?user=root");
 		    Statement stmt=con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);  
 		    ResultSet rs=stmt.executeQuery("select * from mensaje_x_idioma where id_idioma ="+idiomaElegido+";");
-		    int fila = (int)(Math.random()*(3-0)+0);
+		    fila = (int)(Math.random()*(3-0)+0);
 		    rs.absolute(14);
 			fila = verificarUbicacionValida(fila);
-			System.out.println(rs.getString("mensaje")+": "+fila);
-			int columna = (int)(Math.random()*(3-0)+0);
+			//System.out.println(rs.getString("mensaje")+": "+fila);
+			columna = (int)(Math.random()*(3-0)+0);
 			columna = verificarUbicacionValida(columna);
 			rs.absolute(15);
-		    System.out.println(rs.getString("mensaje")+": "+columna);
+		    //System.out.println(rs.getString("mensaje")+": "+columna);
 			ubicacionElegida = new Ubicacion(fila,columna);
 		}
 		catch(Exception e)
@@ -49,6 +51,13 @@ public class Jugador2 extends Jugador{
 			ubicacion = Integer.parseInt(lector.nextLine());
 		}
 		 return ubicacion;
+	}
+	
+	public int getFila() {
+		return this.fila;
+	}
+	public int getColumna() {
+		return this.columna;
 	}
 	
 }

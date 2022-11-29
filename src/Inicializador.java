@@ -71,25 +71,38 @@ public class Inicializador{
         			int contadorJugadas = 0;
         			boolean hayCoincidencia = false;
         			while (contadorJugadas < 9 && hayCoincidencia==false) {
-        				primerTablero.mostrarTablero();
+        				//primerTablero.mostrarTablero();
         				if (contadorJugadas%2==0) {
         					jugadorActual = 1;
         					rs.absolute(18);
         					System.out.println(nombre + " " + rs.getString("mensaje"));
-        					jugadaEfectuada = primerTablero.colocarFicha(jugador1.elegirUbicacionFicha(idiomaElegido), jugador1.getTipoFicha(), idiomaElegido);
+        					jugadaEfectuada = primerTablero.colocarFicha(jugador1.elegirUbicacionFicha(idiomaElegido), jugador1.getTipoFicha(), idiomaElegido, jugadorActual);
+        					primerTablero.mostrarTablero();
         				} else {
-        					rs.absolute(6);
+        					/*rs.absolute(6);
         					System.out.print(rs.getString("mensaje")+" ");
         					rs.absolute(18);
-        					System.out.print(rs.getString("mensaje")+"\n");
+        					System.out.print(rs.getString("mensaje")+"\n");*/
         					jugadorActual = 2;
-        					jugadaEfectuada = primerTablero.colocarFicha(jugador2.elegirUbicacionFicha(idiomaElegido), jugador2.getTipoFicha(), idiomaElegido);
+        					Ubicacion jugadaJugador2 = jugador2.elegirUbicacionFicha(idiomaElegido);
+        					jugadaEfectuada = primerTablero.colocarFicha(jugadaJugador2, jugador2.getTipoFicha(), idiomaElegido, jugadorActual);
+        					if (jugadaEfectuada == true) {
+        						rs.absolute(6);
+            					System.out.print(rs.getString("mensaje")+" ");
+            					rs.absolute(18);
+            					System.out.print(rs.getString("mensaje")+"\n");
+        						rs.absolute(14);
+        						System.out.println(rs.getString("mensaje") +" " + jugadaJugador2.getUbicacionFila()); //Muestra FILA Computadora
+        						rs.absolute(15);
+        						System.out.println(rs.getString("mensaje") +" " +jugadaJugador2.getUbicacionColumna());//Muestra COLUMNA Computadora
+        						primerTablero.mostrarTablero();
+        					}
         				}
         				if (jugadaEfectuada==true) {
         					if (contadorJugadas > 3) {
         						if (primerTablero.chequearCoincidenciaHorizontal() || primerTablero.chequearCoincidenciaVertical() || primerTablero.chequearCoincidenciaDiagonal()) {
         							hayCoincidencia=true;
-        							primerTablero.mostrarTablero();
+        							//primerTablero.mostrarTablero();
         							if (jugadorActual == 1) {
         								rs.absolute(7);
         								System.out.println("******* "+ nombre.toUpperCase() +" "+rs.getString("mensaje")+"!!! *******");
