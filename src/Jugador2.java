@@ -38,6 +38,9 @@ public class Jugador2 extends Jugador{
 			rs.absolute(15);
 		    //System.out.println(rs.getString("mensaje")+": "+columna);
 			ubicacionElegida = new Ubicacion(fila,columna);
+			rs.close();
+    		stmt.close();
+    		con.close();
 		}
 		catch(Exception e)
 		{

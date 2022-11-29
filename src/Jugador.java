@@ -46,6 +46,9 @@ public abstract class Jugador {
 			int columna = Integer.parseInt(lector.nextLine());
 			columna = verificarUbicacionValida(columna,idiomaElegido);
 			ubicacionElegida = new Ubicacion(fila,columna);
+			rs.close();
+    		stmt.close();
+    		con.close();
 		}
 		catch(Exception e)
 		{
@@ -66,6 +69,9 @@ public abstract class Jugador {
 				System.out.println(rs.getString("mensaje"));
 				ubicacion = Integer.parseInt(lector.nextLine());
 			}
+			rs.close();
+    		stmt.close();
+    		con.close();
 		}
 		catch(Exception e)
 		{

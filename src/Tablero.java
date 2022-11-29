@@ -43,6 +43,9 @@ public boolean sePudoColocarFicha;
 				}
 				sePudoColocarFicha=false;
 			}
+		    rs.close();
+    		stmt.close();
+    		con.close();
 		}
 		catch(Exception e)
 		{

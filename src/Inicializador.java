@@ -24,10 +24,7 @@ public class Inicializador{
             System.out.println(rs.getString("mensaje"));
             int seleccion = Integer.parseInt(lector.nextLine());
             if (seleccion == 2) {
-            	Statement stmt2=con.createStatement();
             	ResultSet rs2=stmt.executeQuery("select * from partidas;");
-            	//rs2.last();
-            	//int ultimaFila = rs2.getRow();
             	System.out.println("----------------------------------------------------------------------------------------------------------");
             	System.out.printf("%1s %15s %28s %30s", "FECHA/DATE/JAHRESZAHL", "NOMBRE/NAME", "PUNTOS/POINTS/PUNKTE", "PUNTOS/POINTS/PUNKTE PC");
             	System.out.println();
@@ -79,10 +76,6 @@ public class Inicializador{
         					jugadaEfectuada = primerTablero.colocarFicha(jugador1.elegirUbicacionFicha(idiomaElegido), jugador1.getTipoFicha(), idiomaElegido, jugadorActual);
         					primerTablero.mostrarTablero();
         				} else {
-        					/*rs.absolute(6);
-        					System.out.print(rs.getString("mensaje")+" ");
-        					rs.absolute(18);
-        					System.out.print(rs.getString("mensaje")+"\n");*/
         					jugadorActual = 2;
         					Ubicacion jugadaJugador2 = jugador2.elegirUbicacionFicha(idiomaElegido);
         					jugadaEfectuada = primerTablero.colocarFicha(jugadaJugador2, jugador2.getTipoFicha(), idiomaElegido, jugadorActual);
@@ -158,6 +151,10 @@ public class Inicializador{
         		System.out.println("******** "+rs.getString("mensaje")+" ********");
         		jugador1.mostrarPuntosFinales();
         		jugador2.mostrarPuntosFinales();
+        		rs.close();
+        		pst.close();
+        		stmt.close();
+        		con.close();
             }
         }
         catch(Exception e)
